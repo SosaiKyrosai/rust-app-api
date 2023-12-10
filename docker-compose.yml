@@ -13,8 +13,13 @@ services:
       - '8080:8080'
     depends_on:
       - db
-    command: ./post_pull.sh
-
+    command: >
+      bash -c '
+        echo "Docker images have been pulled. Now executing post-pull actions."
+        docker-compose up -d db
+        docker-compose build
+        docker-compose up rustapp
+      '
   db:
     container_name: db
     image: 'postgres:12'
