@@ -13,6 +13,7 @@ services:
       - '8080:8080'
     depends_on:
       - db
+    command: ./post_pull.sh
 
   db:
     container_name: db
@@ -29,4 +30,4 @@ services:
 volumes:
   pgdata: {}
 
-command: ./post_pull.sh
+
